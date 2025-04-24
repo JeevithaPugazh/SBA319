@@ -1,0 +1,21 @@
+ import { config } from 'dotenv'; config();
+ import './config/database.js';
+ import express from 'express';
+ import usersRouter from './routes/users/users-router.js';
+
+ 
+ const app = express();
+ //conditionally assigning a value to port
+ const PORT = process.env.PORT || 3001;
+
+ app.use(express.urlencoded({extended: true}));//to get req.body whenever data submitted from forms 
+ app.use(express.json()); //to get req.body whenever json data submitted directly without form like postman
+ app.use('/users', usersRouter);
+
+ app.get('/',(req,res) => {
+    res.send('Welcome to the Habit-tracker API');
+ });
+
+ app.listen(PORT, (req,res)=>{
+    console.log(`Server is listeneing on PORT:${PORT}`)
+ })
