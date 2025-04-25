@@ -46,6 +46,13 @@ async function createUser(req, res) {
   }
 }
 
+async function renderNewForm(req,res){
+    try{
+        res.render('./users/new.ejs');
+    }catch(error){
+        res.status(400).json({error: error.message});
+    }
+}
 
 
-export { seedUsers, getUsers, createUser };
+export { seedUsers, getUsers, createUser, renderNewForm };

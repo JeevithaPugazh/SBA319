@@ -13,6 +13,7 @@ router.get("/seed", usersController.seedUsers);
 router.get("/", usersController.getUsers);
 
 //New
+router.get('/new', usersController.renderNewForm);
 
 //Delete
 
