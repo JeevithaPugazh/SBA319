@@ -24,7 +24,7 @@ router.delete("/:id", usersController.deleteUserById);
 router.post("/", usersController.createUser);
 
 //Edit
-
+router.get("/:id/edit", usersController.renderEditForm);
 //Show
-
+router.get("/:id", usersController.showUser);
 export default router;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Creat a User</title>
+  </head>
+  <body>
+    <h1>Create a New User!</h1>
+    <form
+      action="/users/<%= user._id %>?_method=PUT"
+      method="POST"
+    >
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        name="username"
+        id="name"
+        value="<%= user.username %>"
+      /><br /><br />
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        value="<%= user.email %>"
+      /><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="text"
+        name="password"
+        id="password"
+        value="<%= user.password %>"
+        minlength="8"
+        required
+      /><br /><br />
+
+      <button type="submit">Edit User</button>
+    </form>
+  </body>
+</html>
