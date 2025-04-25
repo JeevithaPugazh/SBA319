@@ -3,35 +3,36 @@ import User from "../../models/users/users-model.js";
 
 async function seedHabits(req, res) {
   try {
-    const user = await User.findOne({
-      email: "john@example.com",
-    });
-
-    if (!user) {
-      return res
-        .status(404)
-        .json({ error: "User not found" });
+    const users = await User.find();
+    for(const user of users){
+        await Habit.deleteMany({ userId: user._id });
+        await Habit.insertMany([
+            {
+                userId: user._id,
+                title: "Morning Jog",
+                description: "Jog for 30 minutes every morning.",
+                frequency: "daily",
+                startDate: new Date("2025-04-01"),
+                endDate: new Date("2025-04-30"),
+              },
+              {
+                userId: user._id,
+                title: "Read a Book",
+                description: "Read 20 pages of a book daily.",
+                frequency: "daily",
+                startDate: new Date("2025-04-01"),
+                endDate: new Date("2025-04-30"),
+              },
+              {
+                userId: user._id,
+                title: "Meditation",
+                description: "Meditate for 15 minutes.",
+                frequency: "daily",
+                startDate: new Date("2025-04-01"),
+                endDate: new Date("2025-04-30"),
+              },
+            ]);
     }
-
-    await Habit.deleteMany({ userId: user._id });
-    await Habit.create(
-      {
-        userId: user._id,
-        title: "Morning Jog",
-        description: "Jog for 30 minutes every morning.",
-        frequency: "daily",
-        startDate: new Date("2025-04-01"),
-        endDate: new Date("2025-04-30"),
-      },
-      {
-        userId: user._id,
-        title: "Read a Book",
-        description: "Read 20 pages of a book daily.",
-        frequency: "daily",
-        startDate: new Date("2025-04-01"),
-        endDate: new Date("2025-04-30"),
-      }
-    );
     res.status(201).redirect("/habits");
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -40,7 +41,7 @@ async function seedHabits(req, res) {
 
 async function getHabits(req, res) {
   try {
-    const habits = await Habit.find({}).populate("userId");
+    const habits = await Habit.find()
     res.status(200).json(habits);
   } catch (error) {
     res.status(400).json({ error: error.message });
