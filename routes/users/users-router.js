@@ -13,15 +13,15 @@ router.get("/seed", usersController.seedUsers);
 router.get("/", usersController.getUsers);
 
 //New
-router.get('/new', usersController.renderNewForm);
+router.get("/new", usersController.renderNewForm);
 
 //Delete
-// router.delete('/id', usersController.deleteUser);
+router.delete("/:id", usersController.deleteUserById);
 
 //Update
 
 //Create
-router.post("/", usersController.createUser)
+router.post("/", usersController.createUser);
 
 //Edit
 
