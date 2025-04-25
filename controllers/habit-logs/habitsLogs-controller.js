@@ -30,16 +30,14 @@ async function getHabitsLog(req, res) {
   try {
     console.log("Fetching habit logs...");
     const habitsLog = await HabitLog.find({});
-    console.log("Logs retrieved:", habitsLog);
+
     res.status(200).json(habitsLog);
   } catch (error) {
     console.error("Error retrieving habit logs:", error);
-    res
-      .status(400)
-      .json({
-        message: "Error retrieving habit logs",
-        error,
-      });
+    res.status(400).json({
+      message: "Error retrieving habit logs",
+      error,
+    });
   }
 }
 
