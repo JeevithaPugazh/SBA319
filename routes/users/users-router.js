@@ -16,7 +16,7 @@ router.get("/", usersController.getUsers);
 router.get('/new', usersController.renderNewForm);
 
 //Delete
-
+// router.delete('/id', usersController.deleteUser);
 
 //Update
 
