@@ -19,6 +19,7 @@ router.get("/new", usersController.renderNewForm);
 router.delete("/:id", usersController.deleteUserById);
 
 //Update
+router.put("/:id", usersController.updateUser);
 
 //Create
 router.post("/", usersController.createUser);
